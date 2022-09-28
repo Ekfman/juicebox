@@ -21,7 +21,7 @@ async function createUser({
   } catch (error) {
     throw error;
   }
-}
+};
 
 async function updateUser(id, fields = {}) {
   const setString = Object.keys(fields).map(
@@ -44,7 +44,7 @@ async function updateUser(id, fields = {}) {
   } catch (error) {
     throw error;
   }
-}
+};
 
 async function getAllUsers() {
   try {
@@ -57,7 +57,7 @@ async function getAllUsers() {
   } catch (error) {
     throw error;
   }
-}
+};
 
 async function getUserById(userId) {
   try {
@@ -77,7 +77,7 @@ async function getUserById(userId) {
   } catch (error) {
     throw error;
   }
-}
+};
 
 async function getPostsByUser(userId) {
     try {
@@ -95,7 +95,7 @@ async function getPostsByUser(userId) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function createPost({
     authorId,
@@ -116,7 +116,7 @@ async function getPostsByUser(userId) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function updatePost(postId, fields = {}) {
     // read off the tags & remove that field 
@@ -165,7 +165,7 @@ async function getPostsByUser(userId) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
 async function getAllPosts() {
     try {
@@ -182,7 +182,7 @@ async function getAllPosts() {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
 async function getPostsByUser(userId) {
   try {
@@ -196,7 +196,7 @@ async function getPostsByUser(userId) {
   } catch (error) {
     throw error;
   }
-}
+};
 
 async function createTags(tagList) {
     if (tagList.length === 0) { 
@@ -235,7 +235,7 @@ async function createTags(tagList) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function createPostTag(postId, tagId) {
     try {
@@ -247,7 +247,7 @@ async function createTags(tagList) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function addTagsToPost(postId, tagList) {
     try {
@@ -261,7 +261,7 @@ async function createTags(tagList) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function getPostById(postId) {
     try {
@@ -293,7 +293,7 @@ async function createTags(tagList) {
     } catch (error) {
       throw error;
     }
-  }
+  };
 
   async function getPostsByTagName(tagName) {
     try {
@@ -311,7 +311,20 @@ async function createTags(tagList) {
     } catch (error) {
       throw error;
     }
-  }
+  };
+
+  async function getAllTags(){
+    try {
+        const { rows: tags } = await client.query(`
+        SELECT * 
+        FROM tags
+        `);
+
+        return tags
+    } catch (error) {
+        throw error;
+    }
+  };
 
   
 
@@ -327,4 +340,5 @@ module.exports = {
   getPostsByUser,
   getPostById,
   getPostsByTagName,
+  getAllTags
 }
