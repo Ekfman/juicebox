@@ -1,5 +1,4 @@
 const express = require("express");
-const { tag } = require('./tags');
 const tagsRouter = express.Router();
 
 tagsRouter.use( (req, res, next) => {
