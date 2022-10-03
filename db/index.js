@@ -1,6 +1,6 @@
 const { Client } = require('pg')
 
-const client = new Client('postgres://localhost:5432/juicebox-dev');
+const client = new Client(process.env.DATABASE_URL || 'postgres://localhost:5432/juicebox-dev');
 
 
 async function createUser({ 
@@ -277,7 +277,7 @@ async function createTags(tagList) {
           message: "Could not find a post with that postId"
         };
       }
-      
+
       const { rows: tags } = await client.query(`
         SELECT tags.*
         FROM tags
